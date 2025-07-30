@@ -16,6 +16,7 @@ interface CommentData {
 
 interface ShareData {
   share_type: 'timeline' | 'message' | 'copy';
+  share_text?: string;
 }
 
 class PostInteractionService {
