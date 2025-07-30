@@ -115,7 +115,7 @@ export function EnhancedPostCard({
   const [replyText, setReplyText] = useState("");
   const [loadingComment, setLoadingComment] = useState(false);
 
-  // Buscar reação do usuário atual e breakdown das reações ao carregar o post
+  // Buscar reação do usuário atual e breakdown das rea��ões ao carregar o post
   useEffect(() => {
     const fetchUserReaction = async () => {
       try {
@@ -610,9 +610,14 @@ export function EnhancedPostCard({
         <div className="flex items-center justify-between">
           {/* Reaction counts */}
           <div className="flex items-center space-x-4 text-sm text-gray-500">
-            {likesCount > 0 && (
-              <span>{likesCount} {likesCount === 1 ? "reação" : "reações"}</span>
-            )}
+            <ReactionPreview
+              reactions={reactionBreakdown}
+              totalCount={likesCount}
+              onClick={() => {
+                // Aqui podemos abrir um modal mostrando quem reagiu
+                console.log('Mostrar quem reagiu');
+              }}
+            />
             {commentsCount > 0 && (
               <button onClick={handleToggleComments} className="hover:underline">
                 {commentsCount} {commentsCount === 1 ? "comentário" : "comentários"}
