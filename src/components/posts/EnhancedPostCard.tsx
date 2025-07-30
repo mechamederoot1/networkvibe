@@ -323,7 +323,7 @@ export function EnhancedPostCard({
   const handleMouseLeaveReaction = () => {
     const timeout = setTimeout(() => {
       setShowReactionPicker(false);
-    }, 200); // Delay de 200ms para evitar flicker
+    }, 300); // Delay de 300ms para melhor experiência
     setHoverTimeout(timeout);
   };
 
