@@ -445,14 +445,14 @@ export function EnhancedPostCard({
   const getCurrentReactionDisplay = () => {
     if (currentReactionData) {
       return {
-        emoji: currentReactionData.emoji,
+        type: currentReactionData.type,
         label: currentReactionData.label,
         color: currentReactionData.color,
         bgColor: currentReactionData.bgColor
       };
     }
     return {
-      emoji: '👍',
+      type: 'like' as const,
       label: 'Curtir',
       color: 'text-gray-600',
       bgColor: 'bg-gray-50'
