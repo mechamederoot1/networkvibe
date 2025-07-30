@@ -139,7 +139,13 @@ export function EnhancedPostCard({
     if (userToken && currentUserId) {
       fetchUserReaction();
     }
-  }, [post.id, userToken, currentUserId]);
+
+    return () => {
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+    };
+  }, [post.id, userToken, currentUserId, hoverTimeout]);
 
   const handleReaction = async (reactionType: string = "like") => {
     try {
