@@ -87,8 +87,13 @@ export function useNotifications({ userToken, userId }: UseNotificationsProps) {
       }, 3000);
     };
 
-    ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
+    ws.onerror = (event) => {
+      console.error("WebSocket connection error. Unable to connect to notification service.");
+      console.error("Error details:", {
+        type: event.type,
+        readyState: ws.readyState,
+        url: ws.url
+      });
       setIsConnected(false);
     };
 
