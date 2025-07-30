@@ -201,6 +201,7 @@ export function EnhancedPostCard({
       });
 
       if (response.ok) {
+        setSharesCount(prev => prev + 1);
         onShare?.(post.id);
         if (shareType === 'timeline') {
           alert("Post compartilhado na sua linha do tempo!");
