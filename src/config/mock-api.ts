@@ -44,7 +44,7 @@ export const mockAuthAPI = {
       };
     }
     
-    throw new Error('User not found');
+    throw new Error('Usuário não encontrado');
   },
 
   async verifyEmail(code: string) {
@@ -58,10 +58,10 @@ export const mockAuthAPI = {
       localStorage.removeItem('pendingVerificationUser');
       localStorage.removeItem('pendingVerificationEmail');
       
-      return { ok: true, json: () => Promise.resolve({ success: true, message: 'Email verified!' }) };
+      return { ok: true, json: () => Promise.resolve({ success: true, message: 'E-mail verificado!' }) };
     }
     
-    throw new Error('Invalid verification code');
+    throw new Error('Código de verificação inválido');
   }
 };
 

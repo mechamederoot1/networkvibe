@@ -8,13 +8,15 @@ from core.database import Base
 
 class Reaction(Base):
     __tablename__ = "reactions"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    post_id = Column(Integer, ForeignKey("posts.id"), nullable=False)
+    post_id = Column(Integer, ForeignKey("posts.id"), nullable=True)  # Nullable para permitir reações em comentários
+    comment_id = Column(Integer, ForeignKey("comments.id"), nullable=True)  # Para reações em comentários
     reaction_type = Column(String(20), nullable=False)  # like, love, haha, wow, sad, angry, care, pride, grateful, celebrating
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
+
     user = relationship("User", backref="reactions")
     post = relationship("Post", backref="reactions")
+    # Relacionamento será criado depois que Comment for importado

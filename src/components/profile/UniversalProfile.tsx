@@ -20,7 +20,7 @@ import {
   Flag,
   MoreHorizontal,
 } from "lucide-react";
-import { PostCard } from "../posts/PostCard";
+import { EnhancedPostCard } from "../posts/EnhancedPostCard";
 
 interface ProfileUser {
   id: number;
@@ -594,7 +594,7 @@ export function UniversalProfile({
             </div>
           ) : (
             displayedPosts.map((post) => (
-              <PostCard
+              <EnhancedPostCard
                 key={post.id}
                 post={post}
                 userToken={userToken}

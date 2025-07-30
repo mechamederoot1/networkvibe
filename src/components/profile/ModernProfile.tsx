@@ -22,7 +22,7 @@ import {
   Share2,
   MoreHorizontal,
 } from "lucide-react";
-import { PostCard } from "../posts/PostCard";
+import { EnhancedPostCard } from "../posts/EnhancedPostCard";
 
 interface ProfileUser {
   id: number;
@@ -553,7 +553,7 @@ export function ModernProfile({
             </div>
           ) : (
             displayedPosts.map((post) => (
-              <PostCard
+              <EnhancedPostCard
                 key={post.id}
                 post={post}
                 userToken={userToken}
@@ -958,7 +958,7 @@ export function ModernProfile({
             ) : (
               <div className="space-y-6">
                 {displayedPosts.map((post) => (
-                  <PostCard
+                  <EnhancedPostCard
                     key={post.id}
                     post={post}
                     userToken={userToken}

@@ -515,7 +515,7 @@ export function EditProfileModal({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Username
+                      Nome de usuário
                     </label>
                     <div className="relative">
                       <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -566,7 +566,7 @@ export function EditProfileModal({
                     )}
                     {usernameAvailable === false && (
                       <p className="text-red-500 text-sm mt-1">
-                        Username não disponível
+                        Nome de usuário não disponível
                       </p>
                     )}
                   </div>
@@ -589,7 +589,7 @@ export function EditProfileModal({
 
                 <div className="mt-4">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Bio
+                    Biografia
                   </label>
                   <textarea
                     value={profileData.bio}
@@ -674,7 +674,7 @@ export function EditProfileModal({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Website
+                      Site
                     </label>
                     <input
                       type="url"

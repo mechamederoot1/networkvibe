@@ -275,7 +275,7 @@ export function PostPage({ userToken, currentUserId }: PostPageProps) {
                       ? post.media_url
                       : `http://localhost:8000${post.media_url}`
                   }
-                  alt="Post media"
+                  alt="Mídia do post"
                   className="w-full rounded-lg"
                 />
               )}

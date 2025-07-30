@@ -243,8 +243,13 @@ export function ChatPage({ user, onClose }: ChatPageProps) {
       }
     };
 
-    wsRef.current.onerror = (error) => {
-      console.error("Erro no WebSocket:", error);
+    wsRef.current.onerror = (event) => {
+      console.error("Erro na conexão WebSocket do chat. Servidor pode estar indisponível.");
+      console.error("Detalhes do erro:", {
+        type: event.type,
+        readyState: wsRef.current?.readyState,
+        url: wsRef.current?.url
+      });
     };
   };
 

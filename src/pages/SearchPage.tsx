@@ -205,7 +205,7 @@ export function SearchPage({ userToken, currentUserId = 0 }: SearchPageProps) {
                 {result.media_url && (
                   <img
                     src={result.media_url}
-                    alt="Post media"
+                    alt="Mídia do post"
                     className="w-full h-48 object-cover rounded-lg"
                   />
                 )}

@@ -183,7 +183,7 @@ export function EditProfilePage({ user, onUserUpdate }: EditProfilePageProps) {
             {coverPreview && (
               <img
                 src={coverPreview}
-                alt="Cover"
+                alt="Foto de capa"
                 className="w-full h-full object-cover"
               />
             )}
@@ -199,7 +199,7 @@ export function EditProfilePage({ user, onUserUpdate }: EditProfilePageProps) {
                   avatarPreview ||
                   `https://ui-avatars.com/api/?name=${encodeURIComponent(`${profileData.first_name} ${profileData.last_name}`)}&background=3B82F6&color=fff`
                 }
-                alt="Avatar"
+                alt="Foto de perfil"
                 className="w-24 h-24 rounded-full border-4 border-white object-cover shadow-lg"
               />
             </div>
@@ -538,7 +538,7 @@ export function EditProfilePage({ user, onUserUpdate }: EditProfilePageProps) {
               avatarPreview ||
               `https://ui-avatars.com/api/?name=${encodeURIComponent(`${profileData.first_name} ${profileData.last_name}`)}&background=3B82F6&color=fff`
             }
-            alt="Avatar"
+            alt="Foto de perfil"
             className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg"
           />
           <div className="space-y-2">
@@ -575,7 +575,7 @@ export function EditProfilePage({ user, onUserUpdate }: EditProfilePageProps) {
             {coverPreview && (
               <img
                 src={coverPreview}
-                alt="Cover"
+                alt="Foto de capa"
                 className="w-full h-full object-cover"
               />
             )}
@@ -698,7 +698,7 @@ export function EditProfilePage({ user, onUserUpdate }: EditProfilePageProps) {
               <div className="h-64 bg-gray-100 rounded-xl overflow-hidden">
                 <img
                   src={cropImage}
-                  alt="Crop"
+                  alt="Recortar"
                   className="w-full h-full object-cover"
                 />
               </div>
