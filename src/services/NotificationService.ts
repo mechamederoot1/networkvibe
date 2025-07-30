@@ -28,7 +28,7 @@ class NotificationService {
       },
       onError: (error: string) => {
         console.error('🔥 Notification service error:', error);
-        this.isConnected = false;
+        this.connectionStatus = false;
       },
       maxReconnectAttempts: 5,
       reconnectDelay: 3000
