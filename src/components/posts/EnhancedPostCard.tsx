@@ -304,6 +304,42 @@ export function EnhancedPostCard({
     }
   };
 
+  const handleLikeComment = async (commentId: number) => {
+    try {
+      const response = await fetch(`http://localhost:8000/comments/${commentId}/reactions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+        body: JSON.stringify({ reaction_type: "like" }),
+      });
+
+      if (response.ok) {
+        // Atualizar o comentário específico na lista
+        setComments(prev => prev.map(comment => {
+          if (comment.id === commentId) {
+            return { ...comment, reactions_count: comment.reactions_count + 1 };
+          }
+          // Verificar se é uma resposta
+          if (comment.replies) {
+            return {
+              ...comment,
+              replies: comment.replies.map(reply =>
+                reply.id === commentId
+                  ? { ...reply, reactions_count: reply.reactions_count + 1 }
+                  : reply
+              )
+            };
+          }
+          return comment;
+        }));
+      }
+    } catch (error) {
+      console.error("Erro ao curtir comentário:", error);
+    }
+  };
+
   const handleDelete = async () => {
     if (!confirm("Tem certeza que deseja deletar este post?")) return;
     
