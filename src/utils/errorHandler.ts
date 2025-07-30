@@ -146,7 +146,7 @@ export const errorHandler = new ErrorHandler();
 // Global error handlers
 window.addEventListener('error', (event) => {
   errorHandler.logError(
-    event.message || 'JavaScript error',
+    event.message || 'Erro JavaScript',
     'unknown',
     {
       filename: event.filename,
@@ -159,7 +159,7 @@ window.addEventListener('error', (event) => {
 
 window.addEventListener('unhandledrejection', (event) => {
   errorHandler.logError(
-    `Unhandled promise rejection: ${event.reason}`,
+    `Rejeição de promise não tratada: ${event.reason}`,
     'unknown',
     event.reason
   );
