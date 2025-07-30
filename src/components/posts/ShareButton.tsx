@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Share, Users, Copy, MessageCircle } from 'lucide-react';
 import { postInteractionService } from '../../services/PostInteractionService';
 import { toast } from '../ui/Toast';
+import ShareToTimelineModal from './ShareToTimelineModal';
 
 interface ShareButtonProps {
   postId: number;
@@ -9,6 +10,17 @@ interface ShareButtonProps {
   initialSharesCount?: number;
   onShareSuccess?: (newCount: number) => void;
   size?: 'sm' | 'md' | 'lg';
+  post?: {
+    id: number;
+    content: string;
+    user: {
+      id: number;
+      name: string;
+      avatar?: string;
+    };
+    created_at: string;
+    images?: string[];
+  };
 }
 
 const shareOptions = [
@@ -43,15 +55,27 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
   userToken,
   initialSharesCount = 0,
   onShareSuccess,
-  size = 'md'
+  size = 'md',
+  post
 }) => {
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showTimelineModal, setShowTimelineModal] = useState(false);
   const [sharesCount, setSharesCount] = useState(initialSharesCount);
   const [loading, setLoading] = useState(false);
 
   const handleShare = async (shareType: string) => {
+    if (shareType === 'timeline') {
+      if (!post) {
+        toast.error('Dados do post não disponíveis');
+        return;
+      }
+      setShowShareModal(false);
+      setShowTimelineModal(true);
+      return;
+    }
+
     setLoading(true);
-    
+
     try {
       if (shareType === 'copy') {
         const url = `${window.location.origin}/post/${postId}`;
@@ -61,28 +85,18 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
         return;
       }
 
-
-
-      // Para timeline e message, fazer requisição ao backend
+      // Para message, fazer requisição ao backend
       const result = await postInteractionService.sharePost(
-        postId, 
-        { share_type: shareType as 'timeline' | 'message' }, 
+        postId,
+        { share_type: shareType as 'message' },
         userToken
       );
 
       if (result.success) {
         setSharesCount(prev => prev + 1);
         onShareSuccess?.(sharesCount + 1);
-        
-        switch (shareType) {
-          case 'timeline':
-            toast.success('Post compartilhado na sua timeline!');
-            break;
-          case 'message':
-            toast.success('Abrindo mensagens para compartilhar...');
-            // Aqui poderia abrir um modal de seleção de contatos
-            break;
-        }
+        toast.success('Abrindo mensagens para compartilhar...');
+        // Aqui poderia abrir um modal de seleção de contatos
       } else {
         toast.error(result.message);
       }
@@ -93,6 +107,11 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
       setLoading(false);
       setShowShareModal(false);
     }
+  };
+
+  const handleTimelineShareSuccess = () => {
+    setSharesCount(prev => prev + 1);
+    onShareSuccess?.(sharesCount + 1);
   };
 
   const buttonSize = {
@@ -167,6 +186,17 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
             </div>
           </div>
         </>
+      )}
+
+      {/* Timeline Share Modal */}
+      {post && (
+        <ShareToTimelineModal
+          isOpen={showTimelineModal}
+          onClose={() => setShowTimelineModal(false)}
+          post={post}
+          userToken={userToken}
+          onShareSuccess={handleTimelineShareSuccess}
+        />
       )}
     </div>
   );
