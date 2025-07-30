@@ -132,7 +132,7 @@ export function EnhancedPostCard({
           }
         }
       } catch (error) {
-        console.error("Erro ao buscar reação do usu��rio:", error);
+        console.error("Erro ao buscar reação do usuário:", error);
       }
     };
 
@@ -305,6 +305,20 @@ export function EnhancedPostCard({
     if (!showComments && comments.length === 0) {
       fetchComments();
     }
+  };
+
+  const handleMouseEnterReaction = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+    }
+    setShowReactionPicker(true);
+  };
+
+  const handleMouseLeaveReaction = () => {
+    const timeout = setTimeout(() => {
+      setShowReactionPicker(false);
+    }, 200); // Delay de 200ms para evitar flicker
+    setHoverTimeout(timeout);
   };
 
   const handleLikeComment = async (commentId: number) => {
