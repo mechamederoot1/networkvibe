@@ -519,13 +519,13 @@ export function EnhancedPostCard({
             {likesCount > 0 && (
               <span>{likesCount} {likesCount === 1 ? "curtida" : "curtidas"}</span>
             )}
-            {post.comments_count > 0 && (
+            {commentsCount > 0 && (
               <button onClick={handleToggleComments} className="hover:underline">
-                {post.comments_count} {post.comments_count === 1 ? "comentário" : "comentários"}
+                {commentsCount} {commentsCount === 1 ? "comentário" : "comentários"}
               </button>
             )}
-            {post.shares_count > 0 && (
-              <span>{post.shares_count} {post.shares_count === 1 ? "compartilhamento" : "compartilhamentos"}</span>
+            {sharesCount > 0 && (
+              <span>{sharesCount} {sharesCount === 1 ? "compartilhamento" : "compartilhamentos"}</span>
             )}
           </div>
         </div>
