@@ -106,7 +106,6 @@ export function EnhancedPostCard({
   const [showReactionPicker, setShowReactionPicker] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [currentReaction, setCurrentReaction] = useState<string | null>(null);
-  const [showShareModal, setShowShareModal] = useState(false);
   const [userReaction, setUserReaction] = useState<string | null>(null);
   const [reactionBreakdown, setReactionBreakdown] = useState<Array<{type: string; count: number}>>([]);
   
