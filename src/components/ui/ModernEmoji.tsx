@@ -63,19 +63,25 @@ export const ModernEmoji: React.FC<ModernEmojiProps> = ({
       case 'haha':
         return (
           <div className={`${baseClasses} ${animated ? 'hover:scale-110 hover:rotate-6' : ''}`}>
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full"></div>
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-yellow-400 via-orange-400 to-orange-500 shadow-xl flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-orange-600/20 rounded-full"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-transparent via-yellow-300/30 to-white/20 rounded-full"></div>
               <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-                {/* Olhos */}
-                <div className="flex space-x-1 mb-0.5">
-                  <div className="w-1 h-1 bg-black rounded-full"></div>
-                  <div className="w-1 h-1 bg-black rounded-full"></div>
+                {/* Olhos fechados de tanto rir */}
+                <div className="flex space-x-1 mb-1">
+                  <div className="w-1.5 h-0.5 bg-black rounded-full"></div>
+                  <div className="w-1.5 h-0.5 bg-black rounded-full"></div>
                 </div>
-                {/* Boca sorrindo */}
-                <div className="w-2 h-1 border-2 border-black rounded-full border-t-transparent"></div>
+                {/* Boca grande sorrindo */}
+                <div className="w-3 h-2 border-2 border-black rounded-full border-t-transparent relative">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-0.5 bg-black rounded-full"></div>
+                </div>
+                {/* Lágrimas de riso */}
+                <div className="absolute top-1/4 left-1/4 w-0.5 h-1 bg-blue-400 rounded-full opacity-60"></div>
+                <div className="absolute top-1/4 right-1/4 w-0.5 h-1 bg-blue-400 rounded-full opacity-60"></div>
               </div>
               {animated && (
-                <div className="absolute inset-0 bg-yellow-300/30 rounded-full animate-bounce"></div>
+                <div className="absolute inset-0 bg-yellow-300/20 rounded-full animate-pulse"></div>
               )}
             </div>
           </div>
