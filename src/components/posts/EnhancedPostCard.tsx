@@ -647,14 +647,24 @@ export function EnhancedPostCard({
             >
               <button
                 onClick={() => handleReaction(currentReaction || "like")}
+                disabled={loadingReaction}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   isLiked
                     ? `${reactionDisplay.bgColor} ${reactionDisplay.color} shadow-sm border`
                     : "text-gray-600 hover:bg-gray-50 hover:text-blue-500"
-                }`}
+                } ${loadingReaction ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                <span className="text-lg">{reactionDisplay.emoji}</span>
-                <span className="font-medium">{reactionDisplay.label}</span>
+                {loadingReaction ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                    <span className="font-medium">Processando...</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-lg">{reactionDisplay.emoji}</span>
+                    <span className="font-medium">{reactionDisplay.label}</span>
+                  </>
+                )}
               </button>
 
               {/* Reaction Picker */}
