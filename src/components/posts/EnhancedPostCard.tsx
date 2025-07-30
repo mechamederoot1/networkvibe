@@ -591,7 +591,7 @@ export function EnhancedPostCard({
           {/* Reaction counts */}
           <div className="flex items-center space-x-4 text-sm text-gray-500">
             {likesCount > 0 && (
-              <span>{likesCount} {likesCount === 1 ? "curtida" : "curtidas"}</span>
+              <span>{likesCount} {likesCount === 1 ? "reação" : "reações"}</span>
             )}
             {commentsCount > 0 && (
               <button onClick={handleToggleComments} className="hover:underline">
