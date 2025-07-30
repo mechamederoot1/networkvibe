@@ -72,10 +72,10 @@ interface PostCardProps {
 }
 
 const reactionTypes = [
-  { type: 'like', icon: Heart, color: 'text-red-500', label: 'Curtir' },
-  { type: 'love', icon: Heart, color: 'text-pink-500', label: 'Amei' },
+  { type: 'like', icon: ThumbsUp, color: 'text-blue-500', label: 'Curtir' },
+  { type: 'love', icon: Heart, color: 'text-red-500', label: 'Amei' },
   { type: 'haha', icon: Laugh, color: 'text-yellow-500', label: 'Haha' },
-  { type: 'wow', icon: ThumbsUp, color: 'text-blue-500', label: 'Uau' },
+  { type: 'wow', icon: Sparkles, color: 'text-purple-500', label: 'Uau' },
   { type: 'sad', icon: Frown, color: 'text-gray-500', label: 'Triste' },
   { type: 'angry', icon: Angry, color: 'text-red-600', label: 'Grr' },
 ];
