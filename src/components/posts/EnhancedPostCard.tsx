@@ -896,16 +896,22 @@ export function EnhancedPostCard({
                               </div>
                               <div className="flex items-center space-x-3 mt-1 text-xs text-gray-500">
                                 <span>{formatTimeAgo(reply.created_at)}</span>
-                                <button
-                                  onClick={() => handleLikeComment(reply.id)}
-                                  className="hover:text-red-600 flex items-center space-x-1"
-                                >
-                                  <Heart className="w-3 h-3" />
-                                  <span>Curtir</span>
-                                  {reply.reactions_count > 0 && (
-                                    <span className="text-xs">({reply.reactions_count})</span>
-                                  )}
-                                </button>
+                                <CommentReaction
+                                  commentId={reply.id}
+                                  userToken={userToken}
+                                  initialReactionsCount={reply.reactions_count}
+                                  size="sm"
+                                  onReactionChange={(newCount) => {
+                                    setComments(prev => prev.map(comment => ({
+                                      ...comment,
+                                      replies: comment.replies?.map(r =>
+                                        r.id === reply.id
+                                          ? { ...r, reactions_count: newCount }
+                                          : r
+                                      )
+                                    })));
+                                  }}
+                                />
                               </div>
                             </div>
                           </div>
