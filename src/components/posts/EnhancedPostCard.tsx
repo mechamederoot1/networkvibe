@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { ReactionPreview } from './ReactionPreview';
 import { ModernEmoji } from '../ui/ModernEmoji';
+import { CommentReaction } from './CommentReaction';
 
 interface PostAuthor {
   id: number;
