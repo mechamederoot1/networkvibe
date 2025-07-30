@@ -3,7 +3,7 @@ import WebSocketManager from '../utils/websocket';
 class NotificationService {
   private wsManager: WebSocketManager | null = null;
   private listeners: ((notification: any) => void)[] = [];
-  private isConnected = false;
+  private connectionStatus = false;
 
   connect(userId: number, token: string) {
     if (this.wsManager) {
