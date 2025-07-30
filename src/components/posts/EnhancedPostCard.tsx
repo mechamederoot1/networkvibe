@@ -606,10 +606,10 @@ export function EnhancedPostCard({
 
               {/* Reaction Picker */}
               {showReactionPicker && (
-                <div 
+                <div
                   className="absolute bottom-full left-0 mb-2 bg-white rounded-full shadow-lg border border-gray-200 px-2 py-1 flex space-x-1 z-20"
-                  onMouseEnter={() => setShowReactionPicker(true)}
-                  onMouseLeave={() => setShowReactionPicker(false)}
+                  onMouseEnter={handleMouseEnterReaction}
+                  onMouseLeave={handleMouseLeaveReaction}
                 >
                   {reactionTypes.map((reaction) => (
                     <button
