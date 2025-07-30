@@ -566,7 +566,7 @@ export function EditProfileModal({
                     )}
                     {usernameAvailable === false && (
                       <p className="text-red-500 text-sm mt-1">
-                        Username não disponível
+                        Nome de usuário não disponível
                       </p>
                     )}
                   </div>
