@@ -727,35 +727,16 @@ export function EnhancedPostCard({
             </button>
 
             {/* Enhanced Share Button */}
-            <div className="relative">
-              <button
-                onClick={() => setShowShareModal(!showShareModal)}
-                className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-              >
-                <Share className="w-5 h-5" />
-                <span>Compartilhar</span>
-              </button>
-
-              {/* Share Modal */}
-              {showShareModal && (
-                <div className="absolute bottom-full left-0 mb-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
-                  <button
-                    onClick={() => handleShare('timeline')}
-                    className="w-full flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-50"
-                  >
-                    <Users className="w-5 h-5" />
-                    <span>Compartilhar na timeline</span>
-                  </button>
-                  <button
-                    onClick={() => handleShare('copy')}
-                    className="w-full flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-50"
-                  >
-                    <Copy className="w-5 h-5" />
-                    <span>Copiar link</span>
-                  </button>
-                </div>
-              )}
-            </div>
+            <ShareButton
+              postId={post.id}
+              userToken={userToken}
+              initialSharesCount={sharesCount}
+              onShareSuccess={(newCount) => {
+                setSharesCount(newCount);
+                onShare?.(post.id);
+              }}
+              size="md"
+            />
           </div>
 
           <button
