@@ -115,7 +115,7 @@ export function EnhancedPostCard({
   const [replyText, setReplyText] = useState("");
   const [loadingComment, setLoadingComment] = useState(false);
 
-  // Buscar reação do usuário atual ao carregar o post
+  // Buscar reação do usuário atual e breakdown das reações ao carregar o post
   useEffect(() => {
     const fetchUserReaction = async () => {
       try {
@@ -138,8 +138,26 @@ export function EnhancedPostCard({
       }
     };
 
+    const fetchReactionBreakdown = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/posts/${post.id}/reactions/breakdown`, {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const breakdown = await response.json();
+          setReactionBreakdown(breakdown);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar breakdown das reações:", error);
+      }
+    };
+
     if (userToken && currentUserId) {
       fetchUserReaction();
+      fetchReactionBreakdown();
     }
 
     return () => {
