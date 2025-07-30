@@ -213,8 +213,9 @@ export function EnhancedPostCard({
       }
     } catch (error) {
       console.error("Erro ao reagir ao post:", error);
+    } finally {
+      setLoadingReaction(false);
     }
-    setShowReactionPicker(false);
   };
 
   const handleShare = async (shareType: 'timeline' | 'message' | 'copy') => {
