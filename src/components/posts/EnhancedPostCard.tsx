@@ -92,12 +92,15 @@ export function EnhancedPostCard({
 }: PostCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.reactions_count);
+  const [commentsCount, setCommentsCount] = useState(post.comments_count);
+  const [sharesCount, setSharesCount] = useState(post.shares_count);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showReactionPicker, setShowReactionPicker] = useState(false);
   const [currentReaction, setCurrentReaction] = useState<string | null>(null);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [userReaction, setUserReaction] = useState<string | null>(null);
   
   // Comments state
   const [showComments, setShowComments] = useState(false);
