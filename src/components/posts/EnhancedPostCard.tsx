@@ -617,14 +617,12 @@ export function EnhancedPostCard({
                 onClick={() => handleReaction(currentReaction || "like")}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   isLiked
-                    ? `bg-blue-50 ${currentReactionColor} shadow-sm`
+                    ? `${reactionDisplay.bgColor} ${reactionDisplay.color} shadow-sm border`
                     : "text-gray-600 hover:bg-gray-50 hover:text-blue-500"
                 }`}
               >
-                {React.createElement(currentReactionIcon, {
-                  className: `w-5 h-5 ${isLiked ? "fill-current" : ""}`
-                })}
-                <span>{currentReaction ? reactionTypes.find(r => r.type === currentReaction)?.label : "Curtir"}</span>
+                <span className="text-lg">{reactionDisplay.emoji}</span>
+                <span className="font-medium">{reactionDisplay.label}</span>
               </button>
 
               {/* Reaction Picker */}
