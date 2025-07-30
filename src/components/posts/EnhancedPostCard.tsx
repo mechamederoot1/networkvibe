@@ -590,11 +590,11 @@ export function EnhancedPostCard({
             <div className="relative">
               <button
                 onClick={() => handleReaction(currentReaction || "like")}
-                onMouseEnter={() => setShowReactionPicker(true)}
-                onMouseLeave={() => setShowReactionPicker(false)}
+                onMouseEnter={handleMouseEnterReaction}
+                onMouseLeave={handleMouseLeaveReaction}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
                   isLiked
-                    ? `bg-red-50 ${currentReactionColor}`
+                    ? `bg-blue-50 ${currentReactionColor}`
                     : "text-gray-600 hover:bg-gray-50"
                 }`}
               >
