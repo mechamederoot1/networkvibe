@@ -706,6 +706,17 @@ export function EnhancedPostCard({
                 onShare?.(post.id);
               }}
               size="md"
+              post={{
+                id: post.id,
+                content: post.content,
+                user: {
+                  id: post.author.id,
+                  name: `${post.author.first_name} ${post.author.last_name}`,
+                  avatar: post.author.avatar
+                },
+                created_at: post.created_at,
+                images: post.media_url ? [post.media_url] : undefined
+              }}
             />
           </div>
 
