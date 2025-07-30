@@ -105,6 +105,7 @@ export function EnhancedPostCard({
   const [currentReaction, setCurrentReaction] = useState<string | null>(null);
   const [showShareModal, setShowShareModal] = useState(false);
   const [userReaction, setUserReaction] = useState<string | null>(null);
+  const [reactionBreakdown, setReactionBreakdown] = useState<Array<{type: string; count: number}>>([]);
   
   // Comments state
   const [showComments, setShowComments] = useState(false);
