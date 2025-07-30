@@ -63,7 +63,7 @@ class NotificationService {
   }
 
   isConnected(): boolean {
-    return this.ws?.readyState === WebSocket.OPEN;
+    return this.isConnected && this.wsManager?.isConnected() === true;
   }
 }
 
