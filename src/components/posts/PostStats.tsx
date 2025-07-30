@@ -81,7 +81,7 @@ export const PostStats: React.FC<PostStatsProps> = ({
             >
               <Heart className="w-4 h-4 text-red-500" />
               <span>
-                {likesCount} {likesCount === 1 ? "curtida" : "curtidas"}
+                {likesCount} {likesCount === 1 ? "reação" : "reações"}
               </span>
             </button>
           )}
