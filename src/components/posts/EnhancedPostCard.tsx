@@ -598,10 +598,10 @@ export function EnhancedPostCard({
                 onClick={() => handleReaction(currentReaction || "like")}
                 onMouseEnter={handleMouseEnterReaction}
                 onMouseLeave={handleMouseLeaveReaction}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   isLiked
-                    ? `bg-blue-50 ${currentReactionColor}`
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? `bg-blue-50 ${currentReactionColor} shadow-sm`
+                    : "text-gray-600 hover:bg-gray-50 hover:text-blue-500"
                 }`}
               >
                 {React.createElement(currentReactionIcon, { 
