@@ -46,21 +46,21 @@ class ErrorHandler {
    */
   handleWebSocketError(event: Event, context: string = 'WebSocket'): void {
     const target = event.target as WebSocket;
-    let message = `${context} connection error`;
-    
+    let message = `${context} erro de conexão`;
+
     if (target) {
       switch (target.readyState) {
         case WebSocket.CONNECTING:
-          message = `${context}: Unable to connect to server`;
+          message = `${context}: Não foi possível conectar ao servidor`;
           break;
         case WebSocket.CLOSING:
-          message = `${context}: Connection is closing`;
+          message = `${context}: Conexão sendo encerrada`;
           break;
         case WebSocket.CLOSED:
-          message = `${context}: Connection has been closed`;
+          message = `${context}: Conexão foi encerrada`;
           break;
         default:
-          message = `${context}: Unknown connection error`;
+          message = `${context}: Erro de conexão desconhecido`;
       }
     }
 
@@ -74,13 +74,13 @@ class ErrorHandler {
   /**
    * Handle network/API errors
    */
-  handleNetworkError(error: any, context: string = 'Network'): void {
-    let message = `${context} error`;
-    
+  handleNetworkError(error: any, context: string = 'Rede'): void {
+    let message = `Erro de ${context.toLowerCase()}`;
+
     if (error instanceof TypeError && error.message.includes('fetch')) {
-      message = 'Unable to connect to server. Please check your internet connection.';
+      message = 'Não foi possível conectar ao servidor. Verifique sua conexão com a internet.';
     } else if (error?.response?.status) {
-      message = `${context} error: ${error.response.status} ${error.response.statusText}`;
+      message = `Erro de ${context.toLowerCase()}: ${error.response.status} ${error.response.statusText}`;
     } else if (error?.message) {
       message = `${context}: ${error.message}`;
     }
