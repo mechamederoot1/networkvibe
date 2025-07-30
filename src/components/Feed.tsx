@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ResponsiveCreatePostModal } from "./modals/ResponsiveCreatePostModal";
 import { ResponsiveCreateStoryModal } from "./modals/ResponsiveCreateStoryModal";
-import { PostCard } from "./posts/PostCard";
+import { EnhancedPostCard } from "./posts/EnhancedPostCard";
 import { StoriesBar } from "./stories/StoriesBar";
 import { createStoryWithFile } from "./stories/StoryUploadHelper";
 import { apiCall } from "../config/api";
