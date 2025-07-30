@@ -228,7 +228,8 @@ export const usePostInteractions = ({ userToken, onInteractionSuccess }: UsePost
     handleComment,
     handleShare,
     handleBookmark,
-    handleLikeComment
+    handleLikeComment,
+    handleCommentReaction
   };
 };
 
