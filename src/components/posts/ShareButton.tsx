@@ -35,22 +35,6 @@ const shareOptions = [
     description: 'Copie o link do post',
     color: 'text-gray-600',
     bgColor: 'bg-gray-50'
-  },
-  {
-    type: 'facebook',
-    icon: Facebook,
-    label: 'Facebook',
-    description: 'Compartilhar no Facebook',
-    color: 'text-blue-700',
-    bgColor: 'bg-blue-50'
-  },
-  {
-    type: 'twitter',
-    icon: Twitter,
-    label: 'Twitter',
-    description: 'Compartilhar no Twitter',
-    color: 'text-sky-600',
-    bgColor: 'bg-sky-50'
   }
 ];
 
