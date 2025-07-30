@@ -1,6 +1,7 @@
 /**
  * WebSocket utility with improved error handling and connection management
  */
+import { errorHandler } from './errorHandler';
 
 export interface WebSocketConfig {
   userId: number;
