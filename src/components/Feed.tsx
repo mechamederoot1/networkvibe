@@ -238,6 +238,12 @@ export const Feed: React.FC<FeedProps> = ({ user }) => {
 
   return (
     <div className="space-y-4 md:space-y-6 px-2 md:px-0">
+      {/* Handler para interações em tempo real */}
+      <PostInteractionHandler
+        userToken={user.token}
+        userId={user.id || 0}
+      />
+
       {/* Stories Bar */}
       <StoriesBar
         userToken={user.token}
