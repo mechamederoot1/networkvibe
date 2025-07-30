@@ -10,14 +10,8 @@ interface ReactionPreviewProps {
   onClick?: () => void;
 }
 
-const reactionEmojis: { [key: string]: string } = {
-  like: '👍',
-  love: '❤️',
-  haha: '😂',
-  wow: '😮',
-  sad: '😢',
-  angry: '😡',
-};
+// Tipos válidos para o ModernEmoji
+type ReactionType = 'like' | 'love' | 'haha' | 'wow' | 'sad' | 'angry';
 
 export const ReactionPreview: React.FC<ReactionPreviewProps> = ({
   reactions,
