@@ -110,6 +110,34 @@ export function EnhancedPostCard({
   const [replyText, setReplyText] = useState("");
   const [loadingComment, setLoadingComment] = useState(false);
 
+  // Buscar reação do usuário atual ao carregar o post
+  useEffect(() => {
+    const fetchUserReaction = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/posts/${post.id}/user-reaction`, {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.reaction) {
+            setUserReaction(data.reaction.reaction_type);
+            setIsLiked(true);
+            setCurrentReaction(data.reaction.reaction_type);
+          }
+        }
+      } catch (error) {
+        console.error("Erro ao buscar reação do usuário:", error);
+      }
+    };
+
+    if (userToken && currentUserId) {
+      fetchUserReaction();
+    }
+  }, [post.id, userToken, currentUserId]);
+
   const handleReaction = async (reactionType: string = "like") => {
     try {
       const response = await fetch(`http://localhost:8000/posts/${post.id}/reactions`, {
