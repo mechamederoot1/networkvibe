@@ -628,18 +628,20 @@ export function EnhancedPostCard({
               {/* Reaction Picker */}
               {showReactionPicker && (
                 <div
-                  className="absolute bottom-full left-0 mb-2 bg-white rounded-full shadow-xl border border-gray-200 px-3 py-2 flex space-x-2 z-20 animate-in fade-in zoom-in duration-200"
+                  className="absolute bottom-full left-0 mb-2 bg-white rounded-2xl shadow-xl border border-gray-200 px-3 py-2 flex space-x-1 z-20 animate-in fade-in zoom-in duration-200"
                 >
                   {reactionTypes.map((reaction) => (
                     <button
                       key={reaction.type}
                       onClick={() => handleReaction(reaction.type)}
-                      className={`p-2 rounded-full hover:bg-gray-100 hover:scale-110 transition-all duration-200 ${reaction.color} ${
-                        currentReaction === reaction.type ? 'bg-gray-100 scale-110' : ''
+                      className={`p-2 rounded-full hover:bg-gray-100 hover:scale-125 transition-all duration-200 ${
+                        currentReaction === reaction.type ? 'bg-gray-100 scale-110 ring-2 ring-blue-300' : ''
                       }`}
                       title={reaction.label}
                     >
-                      <reaction.icon className="w-5 h-5" />
+                      <span className="text-2xl block transform hover:rotate-12 transition-transform duration-200">
+                        {reaction.emoji}
+                      </span>
                     </button>
                   ))}
                 </div>
