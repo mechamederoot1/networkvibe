@@ -171,9 +171,16 @@ class PostInteractionService {
   }
 
   /**
-   * Curtir comentário
+   * Curtir comentário (método legacy)
    */
   async likeComment(commentId: number, token: string): Promise<ReactionResponse> {
+    return this.toggleCommentReaction(commentId, 'like', token);
+  }
+
+  /**
+   * Reagir a comentário
+   */
+  async toggleCommentReaction(commentId: number, reactionType: string, token: string): Promise<ReactionResponse> {
     try {
       const response = await fetch(`${this.baseUrl}/comments/${commentId}/reactions`, {
         method: 'POST',
@@ -181,29 +188,83 @@ class PostInteractionService {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ reaction_type: 'like' }),
+        body: JSON.stringify({ reaction_type: reactionType }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        return {
+          success: true,
+          message: 'Reação atualizada com sucesso',
+          data
+        };
+      } else {
+        return {
+          success: false,
+          message: data.detail || 'Erro ao processar reação'
+        };
+      }
+    } catch (error) {
+      console.error('Erro ao reagir ao comentário:', error);
+      return {
+        success: false,
+        message: 'Erro de conexão'
+      };
+    }
+  }
+
+  /**
+   * Remover reação de comentário
+   */
+  async removeCommentReaction(commentId: number, token: string): Promise<ReactionResponse> {
+    try {
+      const response = await fetch(`${this.baseUrl}/comments/${commentId}/reactions`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
-        const data = await response.json();
         return {
           success: true,
-          message: 'Comentário curtido',
-          data
+          message: 'Reação removida com sucesso'
         };
       } else {
         const data = await response.json();
         return {
           success: false,
-          message: data.detail || 'Erro ao curtir comentário'
+          message: data.detail || 'Erro ao remover reação'
         };
       }
     } catch (error) {
-      console.error('Erro ao curtir comentário:', error);
+      console.error('Erro ao remover reação do comentário:', error);
       return {
         success: false,
         message: 'Erro de conexão'
       };
+    }
+  }
+
+  /**
+   * Buscar reação do usuário atual para um comentário
+   */
+  async getUserCommentReaction(commentId: number, token: string): Promise<any> {
+    try {
+      const response = await fetch(`${this.baseUrl}/comments/${commentId}/user-reaction`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        return await response.json();
+      }
+      return null;
+    } catch (error) {
+      console.error('Erro ao buscar reação do usuário no comentário:', error);
+      return null;
     }
   }
 
