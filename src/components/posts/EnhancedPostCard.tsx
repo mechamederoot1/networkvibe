@@ -74,12 +74,12 @@ interface PostCardProps {
 }
 
 const reactionTypes = [
-  { type: 'like', emoji: '👍', color: 'text-blue-500', label: 'Curtir', bgColor: 'bg-blue-50' },
-  { type: 'love', emoji: '❤️', color: 'text-red-500', label: 'Amei', bgColor: 'bg-red-50' },
-  { type: 'haha', emoji: '😂', color: 'text-yellow-500', label: 'Haha', bgColor: 'bg-yellow-50' },
-  { type: 'wow', emoji: '😮', color: 'text-blue-400', label: 'Uau', bgColor: 'bg-blue-50' },
-  { type: 'sad', emoji: '😢', color: 'text-gray-500', label: 'Triste', bgColor: 'bg-gray-50' },
-  { type: 'angry', emoji: '😡', color: 'text-red-600', label: 'Raiva', bgColor: 'bg-red-50' },
+  { type: 'like' as const, color: 'text-blue-500', label: 'Curtir', bgColor: 'bg-blue-50' },
+  { type: 'love' as const, color: 'text-red-500', label: 'Amei', bgColor: 'bg-red-50' },
+  { type: 'haha' as const, color: 'text-yellow-500', label: 'Haha', bgColor: 'bg-yellow-50' },
+  { type: 'wow' as const, color: 'text-purple-500', label: 'Uau', bgColor: 'bg-purple-50' },
+  { type: 'sad' as const, color: 'text-gray-500', label: 'Triste', bgColor: 'bg-gray-50' },
+  { type: 'angry' as const, color: 'text-red-600', label: 'Raiva', bgColor: 'bg-red-50' },
 ];
 
 export function EnhancedPostCard({ 
