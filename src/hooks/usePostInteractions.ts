@@ -184,6 +184,44 @@ export const usePostInteractions = ({ userToken, onInteractionSuccess }: UsePost
     }
   }, [userToken, onInteractionSuccess]);
 
+  const handleCommentReaction = useCallback(async (
+    commentId: number,
+    reactionType: string,
+    currentReaction: string | null
+  ) => {
+    setLoading(true);
+
+    try {
+      let result;
+
+      if (currentReaction === reactionType) {
+        // Remover reação se for a mesma
+        result = await postInteractionService.removeCommentReaction(commentId, userToken);
+      } else {
+        // Adicionar/trocar reação
+        result = await postInteractionService.toggleCommentReaction(commentId, reactionType, userToken);
+      }
+
+      if (result.success) {
+        onInteractionSuccess?.();
+        return {
+          success: true,
+          newReaction: currentReaction === reactionType ? null : reactionType,
+          data: result.data
+        };
+      } else {
+        toast.error(result.message);
+        return { success: false };
+      }
+    } catch (error) {
+      console.error('Erro na reação do comentário:', error);
+      toast.error('Erro ao processar reação do comentário');
+      return { success: false };
+    } finally {
+      setLoading(false);
+    }
+  }, [userToken, onInteractionSuccess]);
+
   return {
     loading,
     handleReaction,
