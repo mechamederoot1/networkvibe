@@ -114,8 +114,9 @@ export function EnhancedPostCard({
   const [replyingTo, setReplyingTo] = useState<number | null>(null);
   const [replyText, setReplyText] = useState("");
   const [loadingComment, setLoadingComment] = useState(false);
+  const [loadingReaction, setLoadingReaction] = useState(false);
 
-  // Buscar reação do usuário atual e breakdown das rea��ões ao carregar o post
+  // Buscar reação do usuário atual e breakdown das reações ao carregar o post
   useEffect(() => {
     const fetchUserReaction = async () => {
       try {
