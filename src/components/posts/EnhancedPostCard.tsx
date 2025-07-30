@@ -684,8 +684,8 @@ export function EnhancedPostCard({
                       onClick={() => handleReaction(reaction.type)}
                       className={`relative p-3 rounded-2xl transition-all duration-300 group ${
                         currentReaction === reaction.type
-                          ? 'scale-110 ring-2 ring-blue-400/50 shadow-lg'
-                          : 'hover:scale-125 hover:shadow-xl'
+                          ? 'scale-110 ring-2 ring-blue-400/50 shadow-lg reaction-selected soft-glow'
+                          : 'hover:scale-125 hover:shadow-xl hover:rotate-3'
                       }`}
                       title={reaction.label}
                       style={{
