@@ -22,7 +22,7 @@ import {
   Share2,
   MoreHorizontal,
 } from "lucide-react";
-import { PostCard } from "../posts/PostCard";
+import { EnhancedPostCard } from "../posts/EnhancedPostCard";
 
 interface ProfileUser {
   id: number;
