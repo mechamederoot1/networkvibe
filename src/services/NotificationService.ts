@@ -42,7 +42,7 @@ class NotificationService {
       this.wsManager.disconnect();
       this.wsManager = null;
     }
-    this.isConnected = false;
+    this.connectionStatus = false;
   }
 
   addListener(callback: (notification: any) => void) {
@@ -63,7 +63,7 @@ class NotificationService {
   }
 
   isConnected(): boolean {
-    return this.isConnected && this.wsManager?.isConnected() === true;
+    return this.connectionStatus && this.wsManager?.isConnected() === true;
   }
 }
 
