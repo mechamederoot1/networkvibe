@@ -23,6 +23,7 @@ import {
 import { ReactionPreview } from './ReactionPreview';
 import { ModernEmoji } from '../ui/ModernEmoji';
 import { CommentReaction } from './CommentReaction';
+import { ShareButton } from './ShareButton';
 
 interface PostAuthor {
   id: number;
