@@ -628,20 +628,34 @@ export function EnhancedPostCard({
               {/* Reaction Picker */}
               {showReactionPicker && (
                 <div
-                  className="absolute bottom-full left-0 mb-2 bg-white rounded-2xl shadow-xl border border-gray-200 px-3 py-2 flex space-x-1 z-20 animate-in fade-in zoom-in duration-200"
+                  className="absolute bottom-full left-0 mb-3 bg-white rounded-2xl shadow-2xl border border-gray-200 px-4 py-3 flex space-x-2 z-20 animate-in fade-in zoom-in duration-300"
+                  style={{
+                    background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                    backdropFilter: 'blur(10px)'
+                  }}
                 >
-                  {reactionTypes.map((reaction) => (
+                  {reactionTypes.map((reaction, index) => (
                     <button
                       key={reaction.type}
                       onClick={() => handleReaction(reaction.type)}
-                      className={`p-2 rounded-full hover:bg-gray-100 hover:scale-125 transition-all duration-200 ${
-                        currentReaction === reaction.type ? 'bg-gray-100 scale-110 ring-2 ring-blue-300' : ''
+                      className={`relative p-3 rounded-2xl hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100 hover:scale-125 transition-all duration-300 group ${
+                        currentReaction === reaction.type
+                          ? 'bg-gradient-to-br from-blue-50 to-blue-100 scale-110 ring-2 ring-blue-300 shadow-lg'
+                          : 'hover:shadow-lg'
                       }`}
                       title={reaction.label}
+                      style={{
+                        animationDelay: `${index * 50}ms`
+                      }}
                     >
-                      <span className="text-2xl block transform hover:rotate-12 transition-transform duration-200">
+                      <span className="text-2xl block transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                         {reaction.emoji}
                       </span>
+
+                      {/* Tooltip */}
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                        {reaction.label}
+                      </div>
                     </button>
                   ))}
                 </div>
