@@ -671,36 +671,44 @@ export function EnhancedPostCard({
               {/* Reaction Picker */}
               {showReactionPicker && (
                 <div
-                  className="absolute bottom-full left-0 mb-3 bg-white rounded-2xl shadow-2xl border border-gray-200 px-4 py-3 flex space-x-2 z-20 animate-in fade-in zoom-in duration-300"
+                  className="absolute bottom-full left-0 mb-3 rounded-2xl shadow-2xl border border-gray-200/50 px-4 py-3 flex space-x-2 z-20 animate-in fade-in zoom-in duration-300"
                   style={{
-                    background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-                    backdropFilter: 'blur(10px)'
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)',
+                    backdropFilter: 'blur(20px)',
+                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2)'
                   }}
                 >
                   {reactionTypes.map((reaction, index) => (
                     <button
                       key={reaction.type}
                       onClick={() => handleReaction(reaction.type)}
-                      className={`relative p-3 rounded-2xl hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100 hover:scale-125 transition-all duration-300 group ${
+                      className={`relative p-3 rounded-2xl transition-all duration-300 group ${
                         currentReaction === reaction.type
-                          ? 'bg-gradient-to-br from-blue-50 to-blue-100 scale-110 ring-2 ring-blue-300 shadow-lg'
-                          : 'hover:shadow-lg'
+                          ? 'scale-110 ring-2 ring-blue-400/50 shadow-lg'
+                          : 'hover:scale-125 hover:shadow-xl'
                       }`}
                       title={reaction.label}
                       style={{
-                        animationDelay: `${index * 50}ms`
+                        animationDelay: `${index * 50}ms`,
+                        background: currentReaction === reaction.type
+                          ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%)'
+                          : 'transparent'
                       }}
                     >
                       <ModernEmoji
                         type={reaction.type}
                         size="lg"
                         animated={true}
-                        className="group-hover:scale-110 group-hover:rotate-12"
+                        className="group-hover:scale-110"
                       />
 
+                      {/* Glow effect on hover */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300 bg-gradient-radial from-blue-400/20 to-transparent"></div>
+
                       {/* Tooltip */}
-                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900/90 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap backdrop-blur-sm">
                         {reaction.label}
+                        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900/90 rotate-45"></div>
                       </div>
                     </button>
                   ))}
