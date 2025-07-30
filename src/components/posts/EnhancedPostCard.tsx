@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Heart, 
-  MessageCircle, 
-  Share, 
-  Bookmark, 
-  MoreHorizontal, 
-  Edit3, 
+import {
+  Heart,
+  MessageCircle,
+  Share,
+  Bookmark,
+  MoreHorizontal,
+  Edit3,
   Trash2,
   Flag,
   Link,
@@ -16,7 +16,9 @@ import {
   Angry,
   Frown,
   Users,
-  Copy
+  Copy,
+  Sparkles,
+  CircleHeart
 } from 'lucide-react';
 
 interface PostAuthor {
