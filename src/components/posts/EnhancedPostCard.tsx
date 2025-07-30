@@ -169,6 +169,11 @@ export function EnhancedPostCard({
   }, [post.id, userToken, currentUserId, hoverTimeout]);
 
   const handleReaction = async (reactionType: string = "like") => {
+    if (loadingReaction) return; // Prevenir cliques múltiplos
+
+    setLoadingReaction(true);
+    setShowReactionPicker(false); // Fechar o picker
+
     try {
       // Se usuário já reagiu com o mesmo tipo, remover reação
       if (userReaction === reactionType) {
