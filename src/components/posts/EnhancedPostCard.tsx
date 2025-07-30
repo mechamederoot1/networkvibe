@@ -286,7 +286,9 @@ export function EnhancedPostCard({
       if (response.ok) {
         setReplyText("");
         setReplyingTo(null);
+        setCommentsCount(prev => prev + 1);
         fetchComments();
+        onComment?.(post.id);
       }
     } catch (error) {
       console.error("Erro ao enviar resposta:", error);
