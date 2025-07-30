@@ -1,83 +1,48 @@
-import { getWebSocketURL } from '../config/api';
+import WebSocketManager from '../utils/websocket';
 
 class NotificationService {
-  private ws: WebSocket | null = null;
+  private wsManager: WebSocketManager | null = null;
   private listeners: ((notification: any) => void)[] = [];
-  private reconnectAttempts = 0;
-  private maxReconnectAttempts = 5;
-  private reconnectDelay = 1000;
-  private userId: number | null = null;
-  private token: string | null = null;
+  private isConnected = false;
 
   connect(userId: number, token: string) {
-    this.userId = userId;
-    this.token = token;
-    this.connectWebSocket();
-  }
+    if (this.wsManager) {
+      this.wsManager.disconnect();
+    }
 
-  private connectWebSocket() {
-    if (!this.userId || !this.token) return;
-
-    try {
-      const wsUrl = getWebSocketURL(`/ws/${this.userId}?token=${this.token}`);
-      this.ws = new WebSocket(wsUrl);
-
-      this.ws.onopen = () => {
-        console.log('WebSocket connected');
-        this.reconnectAttempts = 0;
-      };
-
-      this.ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          if (data.type === 'notification') {
-            this.notifyListeners(data);
-          }
-        } catch (error) {
-          console.error('Error parsing WebSocket message:', error);
+    this.wsManager = new WebSocketManager({
+      userId,
+      token,
+      onConnect: () => {
+        console.log('✅ Notification service connected');
+        this.isConnected = true;
+      },
+      onDisconnect: () => {
+        console.log('❌ Notification service disconnected');
+        this.isConnected = false;
+      },
+      onMessage: (data: any) => {
+        if (data.type === 'notification') {
+          this.notifyListeners(data);
         }
-      };
+      },
+      onError: (error: string) => {
+        console.error('🔥 Notification service error:', error);
+        this.isConnected = false;
+      },
+      maxReconnectAttempts: 5,
+      reconnectDelay: 3000
+    });
 
-      this.ws.onclose = () => {
-        console.log('WebSocket disconnected');
-        this.attemptReconnect();
-      };
-
-      this.ws.onerror = (event) => {
-        console.error('WebSocket connection error. Server may be unavailable.');
-        console.error('Error details:', {
-          type: event.type,
-          target: event.target?.readyState,
-          url: wsUrl
-        });
-      };
-    } catch (error) {
-      console.error('Error creating WebSocket connection:', error);
-      this.attemptReconnect();
-    }
-  }
-
-  private attemptReconnect() {
-    if (this.reconnectAttempts < this.maxReconnectAttempts) {
-      this.reconnectAttempts++;
-      console.log(`Attempting to reconnect... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
-      
-      setTimeout(() => {
-        this.connectWebSocket();
-      }, this.reconnectDelay * this.reconnectAttempts);
-    } else {
-      console.log('Max reconnection attempts reached');
-    }
+    this.wsManager.connect();
   }
 
   disconnect() {
-    if (this.ws) {
-      this.ws.close();
-      this.ws = null;
+    if (this.wsManager) {
+      this.wsManager.disconnect();
+      this.wsManager = null;
     }
-    this.userId = null;
-    this.token = null;
-    this.reconnectAttempts = 0;
+    this.isConnected = false;
   }
 
   addListener(callback: (notification: any) => void) {
