@@ -286,10 +286,22 @@ export const Feed: React.FC<FeedProps> = ({ user }) => {
               userToken={user.token}
               currentUserId={user.id || 0}
               canEdit={post.author.id === user.id}
-              onLike={(postId) => console.log('Like post:', postId)}
-              onComment={(postId) => console.log('Comment post:', postId)}
-              onShare={(postId) => console.log('Share post:', postId)}
-              onBookmark={(postId) => console.log('Bookmark post:', postId)}
+              onLike={(postId) => {
+                // Atualizar o post local se necessário
+                console.log('Post curtido:', postId);
+              }}
+              onComment={(postId) => {
+                // Comentário foi adicionado, pode atualizar contadores se necessário
+                console.log('Comentário adicionado ao post:', postId);
+              }}
+              onShare={(postId) => {
+                // Post foi compartilhado
+                console.log('Post compartilhado:', postId);
+              }}
+              onBookmark={(postId) => {
+                // Post foi salvo/removido dos salvos
+                console.log('Post salvo/removido:', postId);
+              }}
               onDelete={(postId) => {
                 setPosts(posts.filter(p => p.id !== postId));
               }}
