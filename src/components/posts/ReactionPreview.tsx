@@ -35,14 +35,18 @@ export const ReactionPreview: React.FC<ReactionPreviewProps> = ({
     >
       {/* Emojis das reações */}
       <div className="flex -space-x-1">
-        {topReactions.map((reaction) => (
-          <span
+        {topReactions.map((reaction, index) => (
+          <div
             key={reaction.type}
-            className="inline-block w-5 h-5 bg-white rounded-full border border-gray-200 text-xs flex items-center justify-center"
-            style={{ fontSize: '10px' }}
+            className="inline-block bg-white rounded-full border-2 border-white shadow-sm"
+            style={{ zIndex: topReactions.length - index }}
           >
-            {reactionEmojis[reaction.type]}
-          </span>
+            <ModernEmoji
+              type={reaction.type as ReactionType}
+              size="sm"
+              animated={false}
+            />
+          </div>
         ))}
       </div>
       
