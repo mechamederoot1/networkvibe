@@ -593,19 +593,21 @@ export function EnhancedPostCard({
         <div className="flex items-center justify-between mt-3">
           <div className="flex items-center space-x-1">
             {/* Enhanced Reaction Button */}
-            <div className="relative">
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnterReaction}
+              onMouseLeave={handleMouseLeaveReaction}
+            >
               <button
                 onClick={() => handleReaction(currentReaction || "like")}
-                onMouseEnter={handleMouseEnterReaction}
-                onMouseLeave={handleMouseLeaveReaction}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   isLiked
                     ? `bg-blue-50 ${currentReactionColor} shadow-sm`
                     : "text-gray-600 hover:bg-gray-50 hover:text-blue-500"
                 }`}
               >
-                {React.createElement(currentReactionIcon, { 
-                  className: `w-5 h-5 ${isLiked ? "fill-current" : ""}` 
+                {React.createElement(currentReactionIcon, {
+                  className: `w-5 h-5 ${isLiked ? "fill-current" : ""}`
                 })}
                 <span>{currentReaction ? reactionTypes.find(r => r.type === currentReaction)?.label : "Curtir"}</span>
               </button>
@@ -613,9 +615,7 @@ export function EnhancedPostCard({
               {/* Reaction Picker */}
               {showReactionPicker && (
                 <div
-                  className="absolute bottom-full left-0 mb-2 bg-white rounded-full shadow-lg border border-gray-200 px-3 py-2 flex space-x-2 z-20 animate-in fade-in zoom-in duration-200"
-                  onMouseEnter={handleMouseEnterReaction}
-                  onMouseLeave={handleMouseLeaveReaction}
+                  className="absolute bottom-full left-0 mb-2 bg-white rounded-full shadow-xl border border-gray-200 px-3 py-2 flex space-x-2 z-20 animate-in fade-in zoom-in duration-200"
                 >
                   {reactionTypes.map((reaction) => (
                     <button
