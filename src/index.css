@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Gradiente radial personalizado */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
