@@ -355,7 +355,7 @@ export function SearchPage({ isOpen, onClose, userToken }: SearchPageProps) {
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                 <TrendingUp className="w-5 h-5 mr-2" />
-                Trending
+                Em Alta
               </h2>
 
               <div className="space-y-3">
