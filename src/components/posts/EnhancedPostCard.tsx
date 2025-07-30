@@ -100,6 +100,7 @@ export function EnhancedPostCard({
   const [showOptions, setShowOptions] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showReactionPicker, setShowReactionPicker] = useState(false);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [currentReaction, setCurrentReaction] = useState<string | null>(null);
   const [showShareModal, setShowShareModal] = useState(false);
   const [userReaction, setUserReaction] = useState<string | null>(null);
@@ -131,7 +132,7 @@ export function EnhancedPostCard({
           }
         }
       } catch (error) {
-        console.error("Erro ao buscar reação do usuário:", error);
+        console.error("Erro ao buscar reação do usu��rio:", error);
       }
     };
 
