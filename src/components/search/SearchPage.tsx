@@ -264,7 +264,7 @@ export function SearchPage({ isOpen, onClose, userToken }: SearchPageProps) {
                             #{result.title}
                           </h3>
                           <p className="text-sm text-gray-500">
-                            {result.posts_count} posts
+                            {result.posts_count} publicações
                           </p>
                         </div>
                         <TrendingUp className="w-5 h-5 text-gray-400" />
