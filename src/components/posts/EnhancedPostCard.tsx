@@ -410,9 +410,9 @@ export function EnhancedPostCard({
     return "";
   };
 
-  const currentReactionIcon = currentReaction 
-    ? reactionTypes.find(r => r.type === currentReaction)?.icon || Heart
-    : Heart;
+  const currentReactionIcon = currentReaction
+    ? reactionTypes.find(r => r.type === currentReaction)?.icon || ThumbsUp
+    : ThumbsUp;
 
   const currentReactionColor = currentReaction 
     ? reactionTypes.find(r => r.type === currentReaction)?.color || 'text-gray-600'
