@@ -253,7 +253,9 @@ export function EnhancedPostCard({
 
       if (response.ok) {
         setNewComment("");
+        setCommentsCount(prev => prev + 1);
         fetchComments();
+        onComment?.(post.id);
       }
     } catch (error) {
       console.error("Erro ao enviar comentário:", error);
