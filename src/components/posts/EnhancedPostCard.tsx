@@ -20,6 +20,7 @@ import {
   Sparkles,
   CircleHeart
 } from 'lucide-react';
+import { ReactionPreview } from './ReactionPreview';
 
 interface PostAuthor {
   id: number;
