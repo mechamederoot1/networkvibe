@@ -879,11 +879,10 @@ export function EnhancedPostCard({
       )}
 
       {/* Click outside to close modals */}
-      {(showShareModal || showReactionPicker) && (
-        <div 
+      {showReactionPicker && (
+        <div
           className="fixed inset-0 z-10"
           onClick={() => {
-            setShowShareModal(false);
             setShowReactionPicker(false);
           }}
         />
