@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Share, Users, Copy, MessageCircle, Facebook, Twitter, Instagram, Link as LinkIcon } from 'lucide-react';
+import { Share, Users, Copy, MessageCircle } from 'lucide-react';
 import { postInteractionService } from '../../services/PostInteractionService';
 import { toast } from '../ui/Toast';
 
