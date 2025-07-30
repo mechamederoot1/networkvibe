@@ -43,8 +43,13 @@ class NotificationService {
         this.attemptReconnect();
       };
 
-      this.ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
+      this.ws.onerror = (event) => {
+        console.error('WebSocket connection error. Server may be unavailable.');
+        console.error('Error details:', {
+          type: event.type,
+          target: event.target?.readyState,
+          url: wsUrl
+        });
       };
     } catch (error) {
       console.error('Error creating WebSocket connection:', error);
