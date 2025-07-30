@@ -410,13 +410,28 @@ export function EnhancedPostCard({
     return "";
   };
 
-  const currentReactionIcon = currentReaction
-    ? reactionTypes.find(r => r.type === currentReaction)?.icon || ThumbsUp
-    : ThumbsUp;
+  const currentReactionData = currentReaction
+    ? reactionTypes.find(r => r.type === currentReaction)
+    : null;
 
-  const currentReactionColor = currentReaction 
-    ? reactionTypes.find(r => r.type === currentReaction)?.color || 'text-gray-600'
-    : 'text-gray-600';
+  const getCurrentReactionDisplay = () => {
+    if (currentReactionData) {
+      return {
+        emoji: currentReactionData.emoji,
+        label: currentReactionData.label,
+        color: currentReactionData.color,
+        bgColor: currentReactionData.bgColor
+      };
+    }
+    return {
+      emoji: '👍',
+      label: 'Curtir',
+      color: 'text-gray-600',
+      bgColor: 'bg-gray-50'
+    };
+  };
+
+  const reactionDisplay = getCurrentReactionDisplay();
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
