@@ -674,7 +674,7 @@ export function EditProfileModal({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Website
+                      Site
                     </label>
                     <input
                       type="url"
