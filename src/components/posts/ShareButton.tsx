@@ -61,21 +61,7 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
         return;
       }
 
-      if (shareType === 'facebook') {
-        const url = `${window.location.origin}/post/${postId}`;
-        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        window.open(facebookUrl, '_blank', 'width=600,height=400');
-        setShowShareModal(false);
-        return;
-      }
 
-      if (shareType === 'twitter') {
-        const url = `${window.location.origin}/post/${postId}`;
-        const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent('Confira este post interessante!')}`;
-        window.open(twitterUrl, '_blank', 'width=600,height=400');
-        setShowShareModal(false);
-        return;
-      }
 
       // Para timeline e message, fazer requisição ao backend
       const result = await postInteractionService.sharePost(
