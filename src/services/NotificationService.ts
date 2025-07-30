@@ -15,11 +15,11 @@ class NotificationService {
       token,
       onConnect: () => {
         console.log('✅ Notification service connected');
-        this.isConnected = true;
+        this.connectionStatus = true;
       },
       onDisconnect: () => {
         console.log('❌ Notification service disconnected');
-        this.isConnected = false;
+        this.connectionStatus = false;
       },
       onMessage: (data: any) => {
         if (data.type === 'notification') {
