@@ -21,6 +21,7 @@ import {
   CircleHeart
 } from 'lucide-react';
 import { ReactionPreview } from './ReactionPreview';
+import { ModernEmoji } from '../ui/ModernEmoji';
 
 interface PostAuthor {
   id: number;
