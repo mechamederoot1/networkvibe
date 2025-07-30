@@ -85,33 +85,15 @@ export class WebSocketManager {
       
       this.ws.onerror = (event) => {
         this.isConnecting = false;
-        
-        let errorMessage = 'WebSocket connection failed';
-        
-        if (this.ws) {
-          switch (this.ws.readyState) {
-            case WebSocket.CONNECTING:
-              errorMessage = 'Unable to connect to the server. Please check your internet connection.';
-              break;
-            case WebSocket.CLOSING:
-              errorMessage = 'Connection is being closed.';
-              break;
-            case WebSocket.CLOSED:
-              errorMessage = 'Connection has been closed. Attempting to reconnect...';
-              break;
-            default:
-              errorMessage = 'An unknown WebSocket error occurred.';
-          }
-        }
-        
-        console.error('WebSocket error:', {
-          message: errorMessage,
-          readyState: this.ws?.readyState,
-          url: this.ws?.url,
-          event: event.type
-        });
-        
-        this.config.onError?.(errorMessage);
+
+        // Use centralized error handler
+        errorHandler.handleWebSocketError(event, 'WebSocket Manager');
+
+        // Get user-friendly message
+        const errorInfo = errorHandler.getRecentErrors(1)[0];
+        const userMessage = errorInfo ? errorHandler.getUserFriendlyMessage(errorInfo) : 'Connection error occurred';
+
+        this.config.onError?.(userMessage);
       };
       
     } catch (error) {
