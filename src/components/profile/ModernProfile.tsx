@@ -553,7 +553,7 @@ export function ModernProfile({
             </div>
           ) : (
             displayedPosts.map((post) => (
-              <PostCard
+              <EnhancedPostCard
                 key={post.id}
                 post={post}
                 userToken={userToken}
