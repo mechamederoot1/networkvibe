@@ -220,36 +220,7 @@ export function EnhancedPostCard({
     }
   };
 
-  const handleShare = async (shareType: 'timeline' | 'message' | 'copy') => {
-    try {
-      if (shareType === 'copy') {
-        await navigator.clipboard.writeText(`${window.location.origin}/post/${post.id}`);
-        alert("Link copiado para a área de transferência!");
-        setShowShareModal(false);
-        return;
-      }
 
-      const response = await fetch(`http://localhost:8000/posts/${post.id}/share`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userToken}`,
-        },
-        body: JSON.stringify({ share_type: shareType }),
-      });
-
-      if (response.ok) {
-        setSharesCount(prev => prev + 1);
-        onShare?.(post.id);
-        if (shareType === 'timeline') {
-          alert("Post compartilhado na sua linha do tempo!");
-        }
-      }
-    } catch (error) {
-      console.error("Erro ao compartilhar post:", error);
-    }
-    setShowShareModal(false);
-  };
 
   const fetchComments = async () => {
     try {
