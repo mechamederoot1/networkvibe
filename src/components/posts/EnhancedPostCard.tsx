@@ -662,7 +662,7 @@ export function EnhancedPostCard({
                   </>
                 ) : (
                   <>
-                    <span className="text-lg">{reactionDisplay.emoji}</span>
+                    <ModernEmoji type={reactionDisplay.type} size="md" animated={!loadingReaction} />
                     <span className="font-medium">{reactionDisplay.label}</span>
                   </>
                 )}
