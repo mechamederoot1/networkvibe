@@ -784,9 +784,15 @@ export function EnhancedPostCard({
                               </div>
                               <div className="flex items-center space-x-3 mt-1 text-xs text-gray-500">
                                 <span>{formatTimeAgo(reply.created_at)}</span>
-                                <button className="hover:text-red-600 flex items-center space-x-1">
+                                <button
+                                  onClick={() => handleLikeComment(reply.id)}
+                                  className="hover:text-red-600 flex items-center space-x-1"
+                                >
                                   <Heart className="w-3 h-3" />
                                   <span>Curtir</span>
+                                  {reply.reactions_count > 0 && (
+                                    <span className="text-xs">({reply.reactions_count})</span>
+                                  )}
                                 </button>
                               </div>
                             </div>
