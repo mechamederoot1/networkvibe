@@ -140,20 +140,41 @@ export function EnhancedPostCard({
 
   const handleReaction = async (reactionType: string = "like") => {
     try {
-      const response = await fetch(`http://localhost:8000/posts/${post.id}/reactions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userToken}`,
-        },
-        body: JSON.stringify({ reaction_type: reactionType }),
-      });
+      // Se usuário já reagiu com o mesmo tipo, remover reação
+      if (userReaction === reactionType) {
+        const response = await fetch(`http://localhost:8000/posts/${post.id}/reactions`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
 
-      if (response.ok) {
-        setIsLiked(!isLiked);
-        setCurrentReaction(reactionType);
-        setLikesCount(prev => isLiked ? prev - 1 : prev + 1);
-        onLike?.(post.id);
+        if (response.ok) {
+          setIsLiked(false);
+          setCurrentReaction(null);
+          setUserReaction(null);
+          setLikesCount(prev => prev - 1);
+          onLike?.(post.id);
+        }
+      } else {
+        // Adicionar ou trocar reação
+        const response = await fetch(`http://localhost:8000/posts/${post.id}/reactions`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+          body: JSON.stringify({ reaction_type: reactionType }),
+        });
+
+        if (response.ok) {
+          const wasLiked = userReaction !== null;
+          setIsLiked(true);
+          setCurrentReaction(reactionType);
+          setUserReaction(reactionType);
+          setLikesCount(prev => wasLiked ? prev : prev + 1);
+          onLike?.(post.id);
+        }
       }
     } catch (error) {
       console.error("Erro ao reagir ao post:", error);
