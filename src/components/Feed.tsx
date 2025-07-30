@@ -6,6 +6,7 @@ import { StoriesBar } from "./stories/StoriesBar";
 import { createStoryWithFile } from "./stories/StoryUploadHelper";
 import { apiCall } from "../config/api";
 import { toast } from "./ui/Toast";
+import { PostInteractionHandler } from "./posts/PostInteractionHandler";
 
 // Global function type declaration
 declare global {
