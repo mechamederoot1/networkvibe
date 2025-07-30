@@ -958,7 +958,7 @@ export function ModernProfile({
             ) : (
               <div className="space-y-6">
                 {displayedPosts.map((post) => (
-                  <PostCard
+                  <EnhancedPostCard
                     key={post.id}
                     post={post}
                     userToken={userToken}
